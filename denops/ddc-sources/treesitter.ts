@@ -7,7 +7,6 @@ import {
   GatherCandidatesArguments,
   OnInitArguments,
 } from "https://deno.land/x/ddc_vim@v0.5.0/base/source.ts#^";
-import * as nvim from "https://deno.land/x/denops_std@v1.8.1/function/nvim/mod.ts#^";
 
 export class Source extends BaseSource {
   private available = false;
@@ -23,7 +22,13 @@ export class Source extends BaseSource {
   async gatherCandidates({
     denops,
   }: GatherCandidatesArguments): Promise<Candidate[]> {
-    return nvim.nvim_execute_lua(denops, "return require'ddc-treesitter'.gather_candidates()", null) as Promise<Candidate[]>
+    if (!this.available) {
+      return []
+    }
+    return denops.call(
+      "luaeval",
+      "require'ddc-treesitter'.gather_candidates()"
+    ) as Promise<Candidate[]>
   }
 
   private async print_error(denops: Denops, message: string): Promise<void> {
