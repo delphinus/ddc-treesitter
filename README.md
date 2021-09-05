@@ -1,4 +1,4 @@
-# ddc-ctags
+# ddc-treesitter
 
 Treesitter completion for ddc.vim **(experimental)**
 
@@ -21,7 +21,7 @@ https://github.com/nvim-treesitter/nvim-treesitter
 ## Configuration
 
 ```vim
-" Use ctags source.
+" Use treesitter source.
 call ddc#custom#patch_global('sources', ['treesitter'])
 
 " Change source options
