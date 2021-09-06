@@ -11,19 +11,11 @@ M.gather_candidates = function()
       local grandparent = parent and parent:parent() or nil
       local word = vim.treesitter.get_node_text(node, 0)
       if word then
-        local menu = nil
-        if parent then
-          local text = vim.treesitter.get_node_text(parent, 0)
-          if text then menu = '← '..text end
-        end
-        if grandparent and menu then
-          local text = vim.treesitter.get_node_text(grandparent, 0)
-          if text then menu = menu..' ← '..text end
-        end
         table.insert(candidates, {
           word = word,
           kind = query.captures[i],
-          menu = menu,
+          parent = vim.treesitter.get_node_text(parent, 0),
+          grandparent = vim.treesitter.get_node_text(grandparent, 0),
         })
       end
     end
