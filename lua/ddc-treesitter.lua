@@ -14,8 +14,9 @@ M.gather_candidates = function()
         table.insert(candidates, {
           word = word,
           kind = query.captures[i],
-          parent = vim.treesitter.get_node_text(parent, 0),
-          grandparent = vim.treesitter.get_node_text(grandparent, 0),
+          parent = parent and vim.treesitter.get_node_text(parent, 0) or nil,
+          grandparent = grandparent and
+            vim.treesitter.get_node_text(grandparent, 0) or nil,
         })
       end
     end
