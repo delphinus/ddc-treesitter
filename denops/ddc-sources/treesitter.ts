@@ -48,6 +48,6 @@ export class Source extends BaseSource {
   }
 
   private async print_error(denops: Denops, message: string): Promise<void> {
-    await denops.call("ddc#util#print_error", message, "ddc-ctags")
+    await denops.call("ddc#util#print_error", message, "ddc-treesitter")
   }
 }
