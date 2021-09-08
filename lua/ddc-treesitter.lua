@@ -1,11 +1,12 @@
 local M = {}
 
 M.gather_candidates = function()
-  local ok, parser = pcall(vim.treesitter.get_parser)
-  if not ok then return {} end
   local candidates = {}
+  local ok, parser = pcall(vim.treesitter.get_parser)
+  if not ok then return candidates end
+  local query = vim.treesitter.get_query(parser:lang(), 'Highlights')
+  if not query then return candidates end
   for _, tree in pairs(parser:parse()) do
-    local query = vim.treesitter.get_query(parser:lang(), 'Highlights')
     for i, node in query:iter_captures(tree:root(), 0) do
       local parent = node:parent()
       local grandparent = parent and parent:parent() or nil
