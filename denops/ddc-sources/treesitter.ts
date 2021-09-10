@@ -9,10 +9,10 @@ import {
 } from "https://deno.land/x/ddc_vim@v0.5.0/base/source.ts#^";
 
 interface NodeInfo {
-    word: string;
-    kind: string;
-    parent?: string;
-    grandparent?: string;
+  word: string;
+  kind: string;
+  parent?: string;
+  grandparent?: string;
 }
 
 export class Source extends BaseSource {
@@ -30,12 +30,12 @@ export class Source extends BaseSource {
     denops,
   }: GatherCandidatesArguments): Promise<Candidate[]> {
     if (!this.available) {
-      return []
+      return [];
     }
     const nodeInfos = (await denops.call(
       "luaeval",
-      "require'ddc-treesitter'.gather_candidates()"
-    )) as NodeInfo[]
+      "require'ddc-treesitter'.gather_candidates()",
+    )) as NodeInfo[];
     return nodeInfos.map(({ word, kind, parent, grandparent }) => {
       const candidate: Candidate = { word, kind };
       if (grandparent) {
@@ -44,10 +44,10 @@ export class Source extends BaseSource {
         candidate.menu = `→ ${parent}`;
       }
       return candidate;
-    })
+    });
   }
 
   private async print_error(denops: Denops, message: string): Promise<void> {
-    await denops.call("ddc#util#print_error", message, "ddc-treesitter")
+    await denops.call("ddc#util#print_error", message, "ddc-treesitter");
   }
 }
