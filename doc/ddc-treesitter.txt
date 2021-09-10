@@ -8,7 +8,6 @@ CONTENTS					       *ddc-treesitter-contents*
 Introduction		|ddc-treesitter-introduction|
 Install			|ddc-treesitter-install|
 Examples		|ddc-treesitter-examples|
-Params			|ddc-treesitter-params|
 
 
 ==============================================================================
