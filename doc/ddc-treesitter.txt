@@ -1,0 +1,49 @@
+*ddc-treesitter.txt*	Treesitter completion for ddc.vim
+
+Author: delphinus <me@delphinus.dev>
+License: MIT license
+
+CONTENTS					       *ddc-treesitter-contents*
+
+Introduction		|ddc-treesitter-introduction|
+Install			|ddc-treesitter-install|
+Examples		|ddc-treesitter-examples|
+Params			|ddc-treesitter-params|
+
+
+==============================================================================
+INTRODUCTION					   *ddc-treesitter-introduction*
+
+This source collects candidates from nodes parsed by nvim-treesitter.
+
+
+==============================================================================
+INSTALL						        *ddc-treesitter-install*
+
+NOTE: This plugin needs Neovim >=v0.5.0
+
+Please install both "ddc.vim" and "denops.vim".
+
+https://github.com/Shougo/ddc.vim
+https://github.com/vim-denops/denops.vim
+
+And install nvim-treesitter.
+
+https://github.com/nvim-treesitter/nvim-treesitter
+
+
+==============================================================================
+EXAMPLES					       *ddc-treesitter-examples*
+>
+	" Use treesitter source.
+	call ddc#custom#patch_global('sources', ['treesitter'])
+	
+	" Change source options
+	call ddc#custom#patch_global('sourceOptions', {
+	      \ 'treesitter': {'mark': 'T'},
+	      \ })
+<
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:noet:
