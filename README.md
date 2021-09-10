@@ -1,8 +1,10 @@
 # ddc-treesitter
 
-Treesitter completion for ddc.vim **(experimental)**
+Treesitter completion for ddc.vim
 
 This source collects candidates from [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
+
+NOTE: This plugin needs Neovim >=v0.5.0
 
 ## Required
 
