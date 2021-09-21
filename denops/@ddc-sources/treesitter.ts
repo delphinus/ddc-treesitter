@@ -1,12 +1,12 @@
-import { Denops, fn } from "https://deno.land/x/ddc_vim@v0.5.0/deps.ts#^";
+import { Denops, fn } from "https://deno.land/x/ddc_vim@v0.13.0/deps.ts#^";
 import {
   BaseSource,
   Candidate,
-} from "https://deno.land/x/ddc_vim@v0.5.0/types.ts#^";
+} from "https://deno.land/x/ddc_vim@v0.13.0/types.ts#^";
 import {
   GatherCandidatesArguments,
   OnInitArguments,
-} from "https://deno.land/x/ddc_vim@v0.5.0/base/source.ts#^";
+} from "https://deno.land/x/ddc_vim@v0.13.0/base/source.ts#^";
 
 interface NodeInfo {
   word: string;
@@ -15,10 +15,12 @@ interface NodeInfo {
   grandparent?: string;
 }
 
-export class Source extends BaseSource {
+type Params = Record<string, unknown>;
+
+export class Source extends BaseSource<Params> {
   private available = false;
 
-  async onInit({ denops }: OnInitArguments): Promise<void> {
+  async onInit({ denops }: OnInitArguments<Params>): Promise<void> {
     if (!(await fn.has(denops, "nvim-0.5"))) {
       await this.print_error(denops, "This source needs Neovim >=0.5.0");
       return;
@@ -28,7 +30,7 @@ export class Source extends BaseSource {
 
   async gatherCandidates({
     denops,
-  }: GatherCandidatesArguments): Promise<Candidate[]> {
+  }: GatherCandidatesArguments<Params>): Promise<Candidate[]> {
     if (!this.available) {
       return [];
     }
@@ -45,6 +47,10 @@ export class Source extends BaseSource {
       }
       return candidate;
     });
+  }
+
+  params(): Params {
+    return {};
   }
 
   private async print_error(denops: Denops, message: string): Promise<void> {
