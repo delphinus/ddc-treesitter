@@ -1,12 +1,12 @@
 local M = {}
 
-M.gather_candidates = function()
+M.gather_items = function()
   local candidates = {}
   local ok, parser = pcall(vim.treesitter.get_parser)
   if not ok then
     return candidates
   end
-  local query = vim.treesitter.get_query(parser:lang(), "highlights")
+  local query = vim.treesitter.query.get(parser:lang(), "highlights")
   if not query then
     return candidates
   end
