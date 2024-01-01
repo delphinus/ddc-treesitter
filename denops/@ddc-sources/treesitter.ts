@@ -1,12 +1,12 @@
-import { Denops, fn } from "https://lib.deno.dev/x/ddc_vim@v3.4.0/deps.ts";
+import { Denops, fn } from "https://lib.deno.dev/x/ddc_vim@v4.3.1/deps.ts";
 import {
   BaseSource,
   Item,
-} from "https://lib.deno.dev/x/ddc_vim@v3.4.0/types.ts";
+} from "https://lib.deno.dev/x/ddc_vim@v4.3.1/types.ts";
 import {
   GatherArguments,
   OnInitArguments,
-} from "https://lib.deno.dev/x/ddc_vim@v3.4.0/base/source.ts";
+} from "https://lib.deno.dev/x/ddc_vim@v4.3.1/base/source.ts";
 
 interface NodeInfo {
   word: string;
